@@ -23,11 +23,6 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         $where =  "users_id = $id  ";
 
         $count =  updateData($table, $data, $where);
-
-        countresault($count);
-
-    } else {
-
-        echo json_encode(array("status" => "user is not execit"));
     }
+    countresault($count);
 }
