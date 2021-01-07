@@ -12,6 +12,8 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $name     = superFilter($_POST['name']);
     $cat      = superFilter($_POST['catid']);
     $point    = superFilter($_POST['point']);
+    $price    = superFilter($_POST['price']);
+    $descr    = superFilter($_POST['desc']);
 
     $categoriedata  = getData($table, "items_id", $id);
     $count          = $categoriedata['count'];
@@ -31,8 +33,9 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                 "items_name" => $name,
                 "items_point" => $point,
                 "items_image" => $imagename,
-                "items_cat" => $cat
-
+                "items_cat" => $cat , 
+                "items_price" => $price,
+                "items_desc" => $descr
             );
 
             $where =  "items_id = $id ";
@@ -48,7 +51,9 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
                 "items_name" => $name,
                 "items_point" => $point,
-                "items_cat" => $cat
+                "items_cat" => $cat , 
+                "items_price" => $price,
+                "items_desc" => $descr
             );
 
             $where =  "items_id = $id ";
