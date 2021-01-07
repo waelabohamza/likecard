@@ -6,9 +6,10 @@ $table = "subcategories";
 
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
-    $subcatname    = superFilter($_POST['name']);
     $subcatname =     superFilter($_POST['name']);
-    $catid       = "4" ;
+
+    $catid       = superFilter($_POST['catid']);
+
     $imagename = rand(1000, 2000) . $_FILES['file']['name'];
 
     $values = array(
