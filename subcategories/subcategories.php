@@ -2,12 +2,13 @@
 
 include "../connect.php";
 
-$data = getAllData("subcategoriesview", "1 = 1");
+$id = superFilter($_POST['id']);
+
+$data = getAllData("subcategoriesview", "subcategories_id = $id ");
 
 if ($data['count'] > 0) {
 
     echo json_encode($data['values']);
-    
 } else {
 
     zeroCount();
