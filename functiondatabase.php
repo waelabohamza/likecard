@@ -93,6 +93,16 @@ function getData($table, $where, $value, $and = NULL)
     return $data;
 }
 
+
+//===========================
+
+function deleteFile( $filedir , $imageold ){
+
+    if (file_exists("../upload/" . $filedir . "/" . $imageold)) {
+        unlink("../upload/" . $filedir . "/" . $imageold);
+    }
+}
+
 // ==========================
 //  count faild or success
 // ==========================

@@ -1,6 +1,12 @@
 <?php
 include "../connect.php";
+
 $name    = $_POST['name'];
+$name    = $_POST['name'];
+$name    = $_POST['name'];
+$name    = $_POST['name'];
+
+
 $imagename =  $_FILES['file']['name'];
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $catname =     superFilter($_POST['name']);
