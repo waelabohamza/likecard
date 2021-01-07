@@ -2,7 +2,7 @@
 
 include "../connect.php";
 
-$data = getAllData("subcategories", "1 = 1");
+$data = getAllData("subcategoriesview", "1 = 1");
 
 if ($data['count'] > 0) {
 

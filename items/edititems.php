@@ -13,16 +13,16 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $cat      = superFilter($_POST['catid']);
     $point    = superFilter($_POST['point']);
 
-
+    $categoriedata  = getData($table, "items_id", $id);
+    $count          = $categoriedata['count'];
+    $imageold       = $categoriedata['values']['items_image'];
 
     // $datauser  =  $user['data'];
     if ($count > 0) {
 
         if (isset($_FILES['file'])) {
 
-            $categoriedata  = getData($table, "items_id", $id);
-            $count          = $categoriedata['count'];
-            $imageold       = $categoriedata['values']['items_image'];
+
 
             $imagename = rand(1000, 2000) . $_FILES['file']['name'];
 
