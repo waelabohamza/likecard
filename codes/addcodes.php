@@ -11,6 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         "codes_name"      => $code,
         "codes_items"     => $items
     );
+    
     $count = insertData($table, $values);
     countresault($count);
 

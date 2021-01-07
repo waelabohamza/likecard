@@ -2,6 +2,7 @@
 include "../connect.php";
 
 $filedir = "categories";
+
 $table = "categories";
 
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
