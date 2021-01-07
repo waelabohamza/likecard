@@ -1,7 +1,7 @@
 <?php
 
 include "../connect.php";
-
+$table = "users" ; 
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
     $username =     superFilter($_POST['username']);
@@ -13,7 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         "users_email"     => $email,
         "users_password"  => $password
     );
-    $count = insertData("users", $values);
+    $count = insertData($table, $values);
     countresault($count);
 
 }
