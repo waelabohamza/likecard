@@ -15,10 +15,10 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
     $values = array(
 
-        "items_name" => $subcatname,
+        "items_name" => $name,
         "items_point" => $point,
         "items_image" => $imagename,
-        "items_cat" => $catid
+        "items_cat" => $cat
 
     );
 
