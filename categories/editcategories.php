@@ -24,7 +24,6 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
             $imagename = rand(1000, 2000) . $_FILES['file']['name'];
 
-
             $data = array("categories_name" => $catname, "categories_image" => $imagename);
 
             $where =  "categories_id = $id ";
@@ -34,8 +33,9 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             deleteFile($filedir, $imageold);
 
             move_uploaded_file($_FILES["file"]["tmp_name"], "../upload/" . $filedir . "/" . $imagename);
+       
         } else {
-            $table = "categories";
+            
 
             $data = array("categories_name" => $catname, "categories_image" => $imageold);
 
