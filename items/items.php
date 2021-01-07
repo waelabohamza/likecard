@@ -2,7 +2,7 @@
 
 include "../connect.php";
 
-$data = getAllData("categories", "1 = 1");
+$data = getAllData("itemsview", "1 = 1");
 
 if ($data['count'] > 0) {
 
