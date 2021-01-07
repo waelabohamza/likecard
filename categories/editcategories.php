@@ -10,7 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
     $id             = superFilter($_POST['id']);
     $catname        = superFilter($_POST['name']);
-    $categoriedata  = getData("categories", "categories_id", $id);
+    $categoriedata  = getData($table , "categories_id", $id);
     $count          = $categoriedata['count'];
     $imageold       = $categoriedata['values']['categories_image'];
 

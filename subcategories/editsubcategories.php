@@ -2,13 +2,19 @@
 
 include "../connect.php";
 
+$filedir = "subcategories";
+$table = "subcategories";
+
+
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
     $id             = superFilter($_POST['id']);
-    $subcatname        = superFilter($_POST['name']);
-    $subcategoriedata  = getData("subcategories", "subcategories_id", $id);
-    $count          = $subcategoriedata['count'];
-    $imageold       = $subcategoriedata['values']['categories_image'];
+    $catname        = superFilter($_POST['name']);
+    $categoriedata  = getData($table, "subcategories_id", $id);
+    $count          = $categoriedata['count'];
+    $imageold       = $categoriedata['values']['subcategories_image'];
+    $catid          = 4   ; 
+
     // $datauser  =  $user['data'];
     if ($count > 0) {
 
@@ -16,27 +22,29 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
             $imagename = rand(1000, 2000) . $_FILES['file']['name'];
 
-            $table = "subcategories";
+            $data = array(
+                "subcategories_name" => $catname,
+                "subcategories_image" => $imagename,
+                "subcategories_cat" =>      $catid
+            );
 
-            $data = array("categories_name" => $subcatname, "categories_image" => $imagename);
-
-            $where =  "categories_id = $id ";
+            $where =  "subcategories_id = $id ";
 
             $count =  updateData($table, $data, $where);
 
-            if (file_exists("../upload/categories/" . $imageold)){
-                unlink("../upload/categories/" . $imageold);
-            }
+            deleteFile($filedir, $imageold);
 
-            move_uploaded_file($_FILES["file"]["tmp_name"], "../upload/categories/" . $imagename);
-
+            move_uploaded_file($_FILES["file"]["tmp_name"], "../upload/" . $filedir . "/" . $imagename);
         } else {
 
-            $table = "categories";
 
-            $data = array("categories_name" => $subcatname, "categories_image" => $imageold);
+            $data = array(
+                "subcategories_name" => $catname,
+                "subcategories_image" => $imageold,
+                "subcategories_cat" =>      $catid
+            );
 
-            $where =  "categories_id = $id ";
+            $where =  "subcategories_id = $id ";
 
             $count =  updateData($table, $data, $where);
         }
