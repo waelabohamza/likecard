@@ -8,8 +8,6 @@ $table = "categories";
 
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
-
-
     $id             = superFilter($_POST['id']);
     $catname        = superFilter($_POST['name']);
     $categoriedata  = getData("categories", "categories_id", $id);
