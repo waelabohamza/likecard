@@ -1,20 +1,33 @@
 <?php
 include "../connect.php";
 
-$name    = $_POST['name'];
-$name    = $_POST['name'];
-$name    = $_POST['name'];
-$name    = $_POST['name'];
+$filedir = "items";
 
+$table = "items";
 
-$imagename =  $_FILES['file']['name'];
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
-    $catname =     superFilter($_POST['name']);
-    $imagename = rand(1000, 2000) . $_FILES['file']['name'];
-    $values = array("categories_name" => $name, "categories_image" => $imagename);
-    $count = insertData("categories", $values);
+
+    $name     = superFilter($_POST['name']);
+    $cat      = superFilter($_POST['catid']);
+    $point    = superFilter($_POST['point']);
+
+    $imagename = rand(10000, 20000) . $_FILES['file']['name'];
+
+    $values = array(
+
+        "items_name" => $subcatname,
+        "items_point" => $point,
+        "items_image" => $imagename,
+        "items_cat" => $catid
+
+    );
+
+    $count = insertData($table, $values);
+
     if ($count > 0) {
-        move_uploaded_file($_FILES["file"]["tmp_name"], "../upload/categories/" . $imagename);
+
+        move_uploaded_file($_FILES["file"]["tmp_name"], "../upload/" . $filedir . "/" . $imagename);
     }
+
     countresault($count);
 }

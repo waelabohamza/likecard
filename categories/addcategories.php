@@ -7,7 +7,6 @@ $table = "categories";
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
    
     $catname    = superFilter($_POST['name']);
-    $imagename =  $_FILES['file']['name'];
     $catname =     superFilter($_POST['name']);
     $imagename = rand(1000, 2000) . $_FILES['file']['name'];
 
