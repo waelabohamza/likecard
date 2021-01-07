@@ -2,8 +2,9 @@
 
 include "../connect.php";
 
+$table = "users" ; 
 
-$data = getAllData("users", "1 = 1");
+$data = getAllData($table, "1 = 1");
 
 if ($data['count'] > 0) {
 
