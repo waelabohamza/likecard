@@ -1,5 +1,4 @@
 <?php
-
 include "../connect.php";
 $table = "codes" ; 
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
@@ -11,5 +10,4 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     );
     $count = insertData($table, $values);
     countresault($count);
-
 }
