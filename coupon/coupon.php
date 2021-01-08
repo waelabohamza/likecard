@@ -3,9 +3,8 @@
 include "../connect.php";
 
 $table = "coupon" ; 
-$checkcoupon = superFilter($_POST['coupon_code']) ; 
 
-$data = getAllData($table, "coupon_code =  $checkcoupon ");
+$data = getAllData($table, "1 = 1  ");
 
 if ($data['count'] > 0) {
 

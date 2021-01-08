@@ -85,7 +85,7 @@ function getData($table, $where, $value, $and = NULL)
 
     $count = $stmt->rowCount();
 
-    $item = $stmt->fetch();
+    $item = $stmt->fetch(PDO::FETCH_ASSOC);
 
     $data['count'] = $count;
     $data['values'] = $item;

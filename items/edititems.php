@@ -14,6 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $point    = superFilter($_POST['point']);
     $price    = superFilter($_POST['price']);
     $descr    = superFilter($_POST['desc']);
+    $discount = superFilter($_POST['discount']);
 
     $categoriedata  = getData($table, "items_id", $id);
     $count          = $categoriedata['count'];
@@ -29,13 +30,13 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             $imagename = rand(1000, 2000) . $_FILES['file']['name'];
 
             $data = array(
-
                 "items_name" => $name,
                 "items_point" => $point,
                 "items_image" => $imagename,
-                "items_cat" => $cat , 
+                "items_cat" => $cat,
                 "items_price" => $price,
-                "items_desc" => $descr
+                "items_desc" => $descr,
+                "items_discount" => $discount
             );
 
             $where =  "items_id = $id ";
@@ -51,7 +52,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
                 "items_name" => $name,
                 "items_point" => $point,
-                "items_cat" => $cat , 
+                "items_cat" => $cat,
                 "items_price" => $price,
                 "items_desc" => $descr
             );

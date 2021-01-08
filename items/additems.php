@@ -12,6 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $point    = superFilter($_POST['point']);
     $price    = superFilter($_POST['price']);
     $descr    = superFilter($_POST['desc']);
+    $discount = superFilter($_POST['discount'] ?? 0) ;
 
     $imagename = rand(10000, 20000) . $_FILES['file']['name'];
 
@@ -23,6 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         "items_cat" => $cat,
         "items_price" => $price,
         "items_desc" => $descr,
+        "items_discount" => $discount 
 
     );
 
