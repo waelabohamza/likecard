@@ -3,7 +3,7 @@
 include "../connect.php" ; 
 
 $email    = superFilter($_POST['email']) ; 
-$password = sha1($_POST['password']) ; 
+$password = $_POST['password'] ; 
 
 $data     = signInWithEmailAndPassword("users" ,"users_email" , "users_password" , $email , $password);
 $users    = $data['values'] ; 

@@ -3,9 +3,9 @@
 include  "../connect.php";
 $table = "users";
 $username = superFilter($_POST['username']);
-$password = sha1($_POST['username']);
+$password = $_POST['username'];
 $email    = superFilter($_POST['email']);
-$data = getData("users", "users_email",  $email,  "AND users_password = '$password'");
+$data = getData("users", "users_email",  $email);
 $count = $data['count'];
 if ($count > 0) {
     echo json_encode(array("status" => "faild"));
