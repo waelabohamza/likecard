@@ -1,6 +1,10 @@
 <?php
 
-
+//=====================================================================
+// جميع الحقوق محفوظة للمهندس وائل احمد ابو حمزه 
+// 
+// CopyRight By Wael Abou Hamza
+//=====================================================================
 define('KB', 1024);
 define('MB', 1048576);
 define('GB', 1073741824);
@@ -93,10 +97,38 @@ function getData($table, $where, $value, $and = NULL)
     return $data;
 }
 
+// ===========================
+
+function countCoulmn($column, $table, $where = null, $val)
+{
+    global $con;
+    $stmt = $con->prepare("SELECT COUNT($column) FROM $table 
+    $where ");
+    $stmt->execute(array($val));
+    $countcolumn = $stmt->fetchColumn();
+    return $countcolumn;
+}
 
 //===========================
 
-function deleteFile( $filedir , $imageold ){
+function signInWithEmailAndPassword($table, $columnemail, $columnpassword, $email, $password)
+{
+    global $con;
+    $stmt = $con->prepare("SELECT * FROM $table WHERE $columnemail = ? AND $columnpassword = ?");
+    $stmt->execute(array($email, $password));
+    $user  = $stmt->fetch(PDO::FETCH_ASSOC);
+    $data = array();
+    $data['values'] = $user;
+    $data['count'] = $stmt->rowCount();
+    return $data;
+}
+
+
+
+//===========================
+
+function deleteFile($filedir, $imageold)
+{
 
     if (file_exists("../upload/" . $filedir . "/" . $imageold)) {
         unlink("../upload/" . $filedir . "/" . $imageold);
@@ -109,7 +141,7 @@ function deleteFile( $filedir , $imageold ){
 
 function zeroCount()
 {
-    echo json_encode(array( 0 => "falid"));
+    echo json_encode(array(0 => "falid"));
 }
 
 
@@ -155,59 +187,59 @@ function countresault($count)
 //  Image Upload Function 
 // ======================================
 
- 
 
-  function image_data($imagerequset) {
-    global  $msgerrors ;
-    $imagename          = $_FILES[$imagerequset]['name']           ; 
-    $imagetype          = $_FILES[$imagerequset]['type']           ;  
-    $imagetmp           = $_FILES[$imagerequset]['tmp_name']       ; 
-    $imagesize          = $_FILES[$imagerequset]['size']           ;   
-    $allowextention     = array("jpg" , "png" , "jpeg" , "gif") ; 
-    $strtoarray         = explode("." , $imagename )         ;
-    $imageextentionone  = end( $strtoarray )                    ;
-    $imageextension     = strtolower($imageextentionone)        ;
-     if (!empty($imagename) && !in_array($imageextension,$allowextention)){
-                  $msgerrors[] = " هذا الملف ليس صورة يرجى التاكد من صيغة الملف " ; 
+
+function image_data($imagerequset)
+{
+    global  $msgerrors;
+    $imagename          = $_FILES[$imagerequset]['name'];
+    $imagetype          = $_FILES[$imagerequset]['type'];
+    $imagetmp           = $_FILES[$imagerequset]['tmp_name'];
+    $imagesize          = $_FILES[$imagerequset]['size'];
+    $allowextention     = array("jpg", "png", "jpeg", "gif");
+    $strtoarray         = explode(".", $imagename);
+    $imageextentionone  = end($strtoarray);
+    $imageextension     = strtolower($imageextentionone);
+    if (!empty($imagename) && !in_array($imageextension, $allowextention)) {
+        $msgerrors[] = " هذا الملف ليس صورة يرجى التاكد من صيغة الملف ";
     }
-     if ($imagesize > 10 * MB){
-                 $msgerrors[] = " الصورة حجمها كبير يرجى اختيار صورة اقل من 10 ميغا  " ; 
+    if ($imagesize > 10 * MB) {
+        $msgerrors[] = " الصورة حجمها كبير يرجى اختيار صورة اقل من 10 ميغا  ";
     }
-    $image = array() ; 
-    $image['name'] = $imagename ; 
-    $image['tmp'] =  $imagetmp  ; 
-    return  $image  ; 
-  }
-
-function image_upload($imagename , $imagetmp , $directory) {
-
-  
-    if (!empty($imagename)) {
-
-      $image = rand(0,1000000) . "_" . $imagename  ;
-      move_uploaded_file($imagetmp, "uploads/".$directory."/".$image) ;
-      }else {
-      $image = "" ; 
-      }
-
-      return $image ; 
-
+    $image = array();
+    $image['name'] = $imagename;
+    $image['tmp'] =  $imagetmp;
+    return  $image;
 }
 
-function edit_image ($imagename , $imageold , $imagetmp , $directory) {
- 
-  if(!empty($imagename)){
-        $image = rand(0,10000) . "_" . $imagename  ; 
-      if (file_exists($directory . $imageold ) && $imageold != ""){
-          unlink($directory. $imageold) ; 
-      }  
-    move_uploaded_file($imagetmp , $directory . $image) ;
-  }else {
-        $image = $imageold; 
-  }
-  return $image ; 
+function image_upload($imagename, $imagetmp, $directory)
+{
 
 
+    if (!empty($imagename)) {
+
+        $image = rand(0, 1000000) . "_" . $imagename;
+        move_uploaded_file($imagetmp, "uploads/" . $directory . "/" . $image);
+    } else {
+        $image = "";
+    }
+
+    return $image;
+}
+
+function edit_image($imagename, $imageold, $imagetmp, $directory)
+{
+
+    if (!empty($imagename)) {
+        $image = rand(0, 10000) . "_" . $imagename;
+        if (file_exists($directory . $imageold) && $imageold != "") {
+            unlink($directory . $imageold);
+        }
+        move_uploaded_file($imagetmp, $directory . $image);
+    } else {
+        $image = $imageold;
+    }
+    return $image;
 }
 
   //==================================================
