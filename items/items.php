@@ -7,3 +7,7 @@ if ($data['count'] > 0) {
 } else {
     zeroCount();
 }
+/*
+CREATE VIEW itemsview as SELECT items.* , subcategories.* 
+FROM items INNER JOIN subcategories ON subcategories.subcategories_id = items.items_cat
+*/

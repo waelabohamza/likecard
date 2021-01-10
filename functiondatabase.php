@@ -109,6 +109,15 @@ function countCoulmn($column, $table, $where = null, $val)
     return $countcolumn;
 }
 
+function maxId($column , $table)
+{
+    global $con;
+    $stmt = $con->prepare("SELECT MAX($column) FROM $table  ");
+    $stmt->execute();
+    $maxid = $stmt->fetchColumn();
+    return $maxid;
+}
+
 //===========================
 
 function signInWithEmailAndPassword($table, $columnemail, $columnpassword, $email, $password)
@@ -153,6 +162,9 @@ function countresault($count)
         echo json_encode(array("status" => "faild"));
     }
 }
+
+
+
 
 
 
