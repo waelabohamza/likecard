@@ -13,11 +13,10 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $categoriedata  = getData($table, "subcategories_id", $id);
     $count          = $categoriedata['count'];
     $imageold       = $categoriedata['values']['subcategories_image'];
-    $catid          = 4   ; 
+    $catid          = $_POST['catid'];  ; 
 
     // $datauser  =  $user['data'];
     if ($count > 0) {
-
         if (isset($_FILES['file'])) {
 
             $imagename = rand(1000, 2000) . $_FILES['file']['name'];
@@ -36,7 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
             move_uploaded_file($_FILES["file"]["tmp_name"], "../upload/" . $filedir . "/" . $imagename);
         } else {
-
+            
 
             $data = array(
                 "subcategories_name" => $catname,

@@ -20,6 +20,8 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $count          = $categoriedata['count'];
     $imageold       = $categoriedata['values']['items_image'];
 
+    $imageoldtwo    = $categoriedata['values']['items_imagetwo'];
+
     // $datauser  =  $user['data'];
     if ($count > 0) {
 
@@ -28,6 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
 
             $imagename = rand(1000, 2000) . $_FILES['file']['name'];
+            $imagenametwo = rand(1000, 2000) . $_FILES['filetwo']['name'];
 
             $data = array(
                 "items_name" => $name,
@@ -36,7 +39,8 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                 "items_cat" => $cat,
                 "items_price" => $price,
                 "items_desc" => $descr,
-                "items_discount" => $discount
+                "items_discount" => $discount,
+                "items_imagetwo" =>     $imageoldtwo
             );
 
             $where =  "items_id = $id ";
@@ -44,8 +48,11 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             $count =  updateData($table, $data, $where);
 
             deleteFile($filedir, $imageold);
+            deleteFile($filedir, $imageoldtwo);
 
             move_uploaded_file($_FILES["file"]["tmp_name"], "../upload/" . $filedir . "/" . $imagename);
+            move_uploaded_file($_FILES["file"]["tmp_name"], "../upload/" . $filedir . "/" . $imagenametwo);
+        
         } else {
 
             $data = array(

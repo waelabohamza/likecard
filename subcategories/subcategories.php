@@ -4,7 +4,7 @@ include "../connect.php";
 
 $id = superFilter($_POST['id']);
 
-$data = getAllData("subcategoriesview", "subcategories_id = $id ");
+$data = getAllData("subcategoriesview", "categories_id = $id ");
 
 if ($data['count'] > 0) {
 

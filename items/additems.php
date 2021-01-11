@@ -15,6 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $discount = superFilter($_POST['discount'] ?? 0) ;
 
     $imagename = rand(10000, 20000) . $_FILES['file']['name'];
+    $imagenametwo = rand(10000, 20000) . $_FILES['filetwo']['name'];
 
     $values = array(
 
@@ -24,7 +25,8 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         "items_cat" => $cat,
         "items_price" => $price,
         "items_desc" => $descr,
-        "items_discount" => $discount 
+        "items_discount" => $discount  , 
+        "items_imagetwo"  => $imagenametwo 
 
     );
 
@@ -33,6 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     if ($count > 0) {
 
         move_uploaded_file($_FILES["file"]["tmp_name"], "../upload/" . $filedir . "/" . $imagename);
+        move_uploaded_file($_FILES["file"]["tmp_name"], "../upload/" . $filedir . "/" . $imagenametwo);
     }
 
     countresault($count);
