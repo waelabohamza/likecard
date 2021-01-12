@@ -16,7 +16,7 @@ $username       = $data['username'];
 $date =  $data['date'];
 
 
-$codetotalreturn  = array() ; 
+$codetotalreturn  = array();
 
 //===============================================
 // Insert Data In Orders Step 1 
@@ -50,7 +50,7 @@ if ($countorders > 0) {
         // Get Data In OrdersCodes Step 3  Inside For 
         //===============================================
 
-        $codes = getAllData("codes", "codes_items = $itemsid LIMIT   $quantityitems  ");
+        $codes = getAllData("codes", "codes_items = $itemsid AND codes_active = 1 LIMIT   $quantityitems  ");
         $datacodes =   $codes['values'];
         $datacount =   $codes['count'];
 
@@ -60,7 +60,7 @@ if ($countorders > 0) {
 
         for ($a = 0; $a < count($datacodes); $a++) {
             $codesname = $datacodes[$a]['codes_name'];
-            $codetotalreturn[$a] = $codesname ; 
+            $codetotalreturn[$a] = $codesname;
             $dataorderscodes = array(
                 "orderscode_code"   => $codesname,
                 "orderscode_orders" =>  $maxidorders
@@ -70,8 +70,8 @@ if ($countorders > 0) {
             // Update Data Codes  In table Codes for un Active Code  Step 5 
             //============================================================
             $dataupdatecodes = array(
-                'codes_active' => 0 , 
-                'codes_users'  => $id 
+                'codes_active' => 0,
+                'codes_users'  => $id
             );
             $countupdatetablecodes = updateData("codes", $dataupdatecodes, "codes_name  = $codesname");
         }
@@ -81,7 +81,11 @@ if ($countorders > 0) {
 
     if ($countordersdetails > 0 && $countupdatetablecodes > 0 && $countinsertorderscodes  > 0) {
 
-        echo json_encode(array("status" => "success" , "codes" => $codetotalreturn));
+        echo json_encode(array(
+            "status" => "success",
+            "codes" => $codetotalreturn,
+
+        ));
 
 
         // ====================================================
