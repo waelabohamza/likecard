@@ -3,7 +3,7 @@
 include  "../connect.php";
 $table = "users";
 $username = superFilter($_POST['username']);
-$password = $_POST['username'];
+$password = $_POST['password'];
 $email    = superFilter($_POST['email']);
 $data = getData("users", "users_email",  $email);
 $count = $data['count'];
