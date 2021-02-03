@@ -1,0 +1,29 @@
+CREATE VIEW itemsview as SELECT items.* , subcategories.*  , categories.categories_name
+FROM items 
+INNER JOIN subcategories ON subcategories.subcategories_id = items.items_cat
+INNER JOIN categories ON categories.categories_id = subcategories.subcategories_cat
+
+
+CREATE VIEW  myordersview  AS 
+SELECT codes.codes_name  , 
+      items.items_name ,
+      subcategories.subcategories_name , 
+      categories.categories_name , 
+      users.users_name , 
+      users.users_id
+FROM 
+   codes
+INNER JOIN 
+   items ON items.items_id = codes.codes_items 
+INNER JOIN   
+   subcategories   ON items.items_cat  = subcategories.subcategories_id
+INNER JOIN   
+   categories   ON subcategories.subcategories_cat  = categories.categories_id
+INNER JOIN   
+   users   ON users.users_id  = codes.codes_users
+
+
+
+   CREATE VIEW  subcategoriesview AS 
+SELECT categories.* , subcategories.* FROM subcategories 
+INNER JOIN categories ON subcategories.subcategories_cat = categories.categories_id

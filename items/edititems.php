@@ -10,7 +10,9 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
     $id       = superFilter($_POST['id']);
     $name     = superFilter($_POST['name']);
-    $cat      = superFilter($_POST['catid']);
+    //=============================== IMpotant لا تنسى ترجعو لما تفضى وتخلص من الراجحي
+    //==========================================================
+    // $cat      = superFilter($_POST['catid']);
     $point    = superFilter($_POST['point']);
     $price    = superFilter($_POST['price']);
     $descr    = superFilter($_POST['desc']);
@@ -70,7 +72,11 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                 "items_price" => $price,
                 "items_desc" => $descr,
                 "items_discount" => $discount,
-                "items_imagetwo" =>     $imagenametwo
+                "items_imagetwo" =>     $imagenametwo , 
+                "items_price_em"  => $priceem,
+                "items_price_sa"  => $pricesa,
+                "items_price_ir"  => $priceir,
+                "items_offres"  => $offers
             );
 
             $where =  "items_id = $id ";
@@ -91,7 +97,12 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                 "items_price" => $price,
                 "items_desc" => $descr,
                 "items_discount" => $discount,
-                "items_image" =>     $imageold
+                "items_image" =>     $imageold , 
+                "items_price_em"  => $priceem,
+                "items_price_sa"  => $pricesa,
+                "items_price_ir"  => $priceir,
+                "items_offres"  => $offers
+
             );
 
             $where =  "items_id = $id ";
@@ -107,9 +118,13 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
                 "items_name" => $name,
                 "items_point" => $point,
-                "items_cat" => $cat,
+                // "items_cat" => $cat,
                 "items_price" => $price,
-                "items_desc" => $descr
+                "items_desc" => $descr  , 
+                "items_price_em"  => $priceem,
+                "items_price_sa"  => $pricesa,
+                "items_price_ir"  => $priceir,
+                "items_offres"  => $offers
             );
 
             $where =  "items_id = $id ";
@@ -119,7 +134,9 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     }
 
     countresault($count);
+    // echo "wwww" ; 
 } else {
 
     zeroCount();
+  
 }
