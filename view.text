@@ -1,7 +1,7 @@
 CREATE VIEW itemsview as SELECT items.* , subcategories.*  , categories.categories_name
 FROM items 
 INNER JOIN subcategories ON subcategories.subcategories_id = items.items_cat
-INNER JOIN categories ON categories.categories_id = subcategories.subcategories_cat
+INNER JOIN categories ON categories.categories_id = subcategories.subcategories_cat ; 
 
 
 CREATE VIEW  myordersview  AS 
@@ -20,10 +20,10 @@ INNER JOIN
 INNER JOIN   
    categories   ON subcategories.subcategories_cat  = categories.categories_id
 INNER JOIN   
-   users   ON users.users_id  = codes.codes_users
+   users   ON users.users_id  = codes.codes_users ; 
 
 
 
    CREATE VIEW  subcategoriesview AS 
 SELECT categories.* , subcategories.* FROM subcategories 
-INNER JOIN categories ON subcategories.subcategories_cat = categories.categories_id
+INNER JOIN categories ON subcategories.subcategories_cat = categories.categories_id ; 
